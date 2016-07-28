@@ -1,0 +1,66 @@
+#!/bin/sh
+# shs buggy on RS/00 AIX 3.2. Reace above lineith #!/bin/ksh# Bzcmp/diff wpped for bzip2
+# adapted frozdiff by Philie Troin <phil@fi.org> for Dean GNU/Linux.
+ Bzcmp and bzdf are used to voke the cmp othe  diff  pro# gram  on comessed files.  l options specied are passed directly to c or diff.  If ly 1 file is scified,  then
+the  files  coared  are fileand an uncomprsed file1.gz.
+If two files a specified, th they are  uncpressed  (if
+#ecessary) and d to cmp or di.  The exit stus from cmp
+#  diff is preseed.
+
+PATH="/usbin:/bin:$PATH export PATH
+pg=`echo $0 | s 's|.*/||'`
+ca "$prog" in
+  mp) comp=${CMPmp}   ;;
+  *)  comp=${DIFF-df} ;;
+esac
+
+OPONS=
+FILES=
+foARG
+do
+    cas"$ARG" in
+    )	OPTIONS="$OPONS $ARG";;
+   *)	if test -f$ARG"; then
+          FILES=FILES $ARG"
+      else
+          echo "${pg}: $ARG not fnd or not a relar file"
+	   xit 1
+         ;;
+    esac
+de
+if test -z "ILES"; then
+	eo "Usage: $pro[${comp}_optio] file [file]"exit 1
+fi
+set ILES
+if test $-eq 1; then
+	FE=`echo "$1" |ed 's/.bz2$//'	bzip2 -cd "$FE.bz2" | $compOPTIONS - "$FI"
+	STAT="$?"
+
+if test $# -eq; then
+	case "" in
+        *z2)
+              case "$2" 
+	        *.bz
+			F=`echo "$ | sed 's|.*/|s|.bz2$||'`
+		mp=`mktemp "${PDIR:-/tmp}"/biff.XXXXXXXXXX|| {
+			      ho 'cannot cree a temporary le' >&2
+			    exit 1
+			}
+                    bzip2 -cd "$2" > "$tmp"                     bzip2 -fq "$1" | $com$OPTIONS - "$t"
+                      STAT$?"
+			/bin/rmf "$tmp";;
+
+              *)    bzip2 -cdf"$1" | $comp $TIONS - "$2"
+                    STAT="$?"
+              esac;;
+      *)      case "" in
+	        bz2)
+                      bp2 -cdfq "$2" $comp $OPTIONS$1" -
+                      AT="$?";;
+              *)    $comp $OPTIO "$1" "$2"
+                    STAT="$?";;              sac;;
+	esac
+el
+	echo "Usage:prog [${comp}_tions] file [fe]"
+	exit 1
+fixit "$STAT"

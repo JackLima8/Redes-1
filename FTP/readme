@@ -1,0 +1,24 @@
+Aluno: Jackson Felipe de Lima
+
+ Como executar o programa:
+      
+  ./ftp <parametro>   | <-l> local - cliente
+                      | <-r> remoto - servidor 
+                      | em qualquer ordem
+                            
+ Funções implementadas:
+        
+      $ ls <parametro>      | -l,-la ... etc
+      $ Rls <parametro>     |  -l 
+      $ Rcd <dir_destino>   | . ou .. e diretório a frente 
+      $ get <nome_arquivo>
+      $ put <nome_arquivo>     
+          
+    ***é obrigatório  parametro
+
+       
+  Observações:   
+       Existe um erro no buffer que recebe os dados,sempre que recebe uma mensagem de dados apos o primeiro pacote 
+    o buffer pega um pedaço da mensagem anterior, a solução lógica seria manter todas as mensagens com exatamente
+    o mesmo 	tamanho mas isto não deu certo.
+        
